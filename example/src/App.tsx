@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 import {
     Modal,
@@ -25,7 +25,7 @@ const App = () => {
     const [isApkLoading, setDownloading] = useState(false);
     const [currentVersion, setCurrentVersion] = useState<number | null>(null);
 
-    const checkUpdate = async () => {
+    const checkUpdate = useCallback(async () => {
         if (Platform.OS === 'ios') {
             Alert.alert('iOS is not supported');
 
@@ -45,7 +45,7 @@ const App = () => {
         }
 
         return;
-    };
+    }, []);
 
     useEffect(() => {
         const run = async () => {
@@ -120,9 +120,7 @@ const App = () => {
             <Modal visible={updateData !== null} animationType={'slide'}>
                 {updateData && (
                     <View style={styles.container}>
-                        <Text style={styles.title}>
-                            Найдено обновление приложения!
-                        </Text>
+                        <Text style={styles.title}>App update was found!</Text>
                         <Text>{updateData.updateMessage}</Text>
 
                         <View style={{ height: 10 }} />
@@ -138,8 +136,8 @@ const App = () => {
                             >
                                 <Text>
                                     {canInstallApk
-                                        ? 'Установить'
-                                        : 'Обновить приложение'}
+                                        ? 'Install app'
+                                        : 'Update app'}
                                 </Text>
 
                                 <View
