@@ -18,7 +18,7 @@ const AppUpdate = {
     getVersionCode(): Promise<number> {
         return AppUpdateNative.getVersionCode();
     },
-    updateApp(apkUrl: string) {
+    downloadApp(apkUrl: string) {
         AppUpdateNative.updateApp(apkUrl);
     },
     installApp(apkFileName: string): Promise<null> {

@@ -107,14 +107,12 @@ const App = () => {
 
     return (
         <SafeAreaView style={styles.container}>
-            <Text style={styles.title}>
-                App current versionCode: {currentVersion}
-            </Text>
+            <Text style={styles.title}>App versionCode: {currentVersion}</Text>
 
-            <View style={{ height: 10 }} />
+            <View style={styles.spacer} />
 
             <TouchableOpacity style={styles.button} onPress={checkUpdate}>
-                <Text>Проверить обновления</Text>
+                <Text style={styles.buttonText}>Check updates</Text>
             </TouchableOpacity>
 
             <Modal visible={updateData !== null} animationType={'slide'}>
@@ -123,18 +121,18 @@ const App = () => {
                         <Text style={styles.title}>App update was found!</Text>
                         <Text>{updateData.updateMessage}</Text>
 
-                        <View style={{ height: 10 }} />
+                        <View style={styles.spacer} />
 
                         <View>
                             <TouchableOpacity
                                 onPress={async () =>
                                     canInstallApk
                                         ? await AppUpdate.installApp(apkName)
-                                        : AppUpdate.updateApp(updateData.url)
+                                        : AppUpdate.downloadApp(updateData.url)
                                 }
                                 style={styles.button}
                             >
-                                <Text>
+                                <Text style={styles.buttonText}>
                                     {canInstallApk
                                         ? 'Install app'
                                         : 'Update app'}
@@ -168,6 +166,9 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         overflow: 'hidden',
     },
+    buttonText: {
+        paddingHorizontal: 20,
+    },
     container: {
         padding: 12,
     },
@@ -181,6 +182,9 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 22,
         color: '#222',
+    },
+    spacer: {
+        height: 10,
     },
 });
 
