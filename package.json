@@ -1,5 +1,5 @@
 {
-  "name": "react-native-inapp-update",
+  "name": "react-native-update-in-app",
   "version": "0.1.0",
   "description": "Install updates directly from your app",
   "main": "lib/commonjs/index",
@@ -31,13 +31,13 @@
     "ios",
     "android"
   ],
-  "repository": "https://github.com/NepeinAV/react-native-inapp-update",
+  "repository": "https://github.com/NepeinAV/react-native-update-in-app",
   "author": "Andrey Nepein <nepein96@gmail.com> (https://github.com/NepeinAV)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/NepeinAV/react-native-inapp-update/issues"
+    "url": "https://github.com/NepeinAV/react-native-update-in-app/issues"
   },
-  "homepage": "https://github.com/NepeinAV/react-native-inapp-update#readme",
+  "homepage": "https://github.com/NepeinAV/react-native-update-in-app#readme",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },

@@ -12,7 +12,7 @@ import {
     Platform,
 } from 'react-native';
 
-import { AppUpdate } from 'react-native-inapp-update';
+import { AppUpdate } from 'react-native-update-in-app';
 
 const App = () => {
     const [updateData, setUpdateData] = useState<{
@@ -33,7 +33,7 @@ const App = () => {
         }
 
         const result = await fetch(
-            'https://raw.githubusercontent.com/NepeinAV/react-native-inapp-update/master/example/app-updates/update.json',
+            'https://raw.githubusercontent.com/NepeinAV/react-native-update-in-app/master/example/app-updates/update.json',
         );
         const data = await result.json();
         const currentVersionCode = await AppUpdate.getVersionCode();

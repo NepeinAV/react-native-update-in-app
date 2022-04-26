@@ -1,6 +1,6 @@
 {
-    "name": "react-native-inapp-update-example",
-    "description": "Example app for react-native-inapp-update",
+    "name": "react-native-update-in-app-example",
+    "description": "Example app for react-native-update-in-app",
     "version": "0.0.1",
     "private": true,
     "scripts": {
