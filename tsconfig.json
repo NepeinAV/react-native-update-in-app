@@ -2,7 +2,7 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "react-native-in-app-update": ["./src/index"]
+      "react-native-inapp-update": ["./src/index"]
     },
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,

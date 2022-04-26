@@ -1,6 +1,6 @@
 # React Native In-App update
 
-With `react-native-in-app-update` library you can easily implement in-app updates in your **React Native** app using CDN or any other file server. In-app updates (like [Google Play In-app updates](https://developer.android.com/guide/playcore/in-app-updates)) allows your app users to download and install update right in your app UI.
+With `react-native-inapp-update` library you can easily implement in-app updates in your **React Native** app using CDN or any other file server. In-app updates (like [Google Play In-app updates](https://developer.android.com/guide/playcore/in-app-updates)) allows your app users to download and install update right in your app UI.
 
 
 
@@ -9,8 +9,8 @@ With `react-native-in-app-update` library you can easily implement in-app update
 It's best to see it with your own eyes 😉
 
 ```
-git clone https://github.com/NepeinAV/react-native-in-app-update.git \
-    && cd react-native-in-app-update
+git clone https://github.com/NepeinAV/react-native-inapp-update.git \
+    && cd react-native-inapp-update
 
 yarn
 yarn example android
@@ -19,7 +19,7 @@ yarn example android
 ## Installation
 
 ```sh
-yarn add react-native-in-app-update
+yarn add react-native-inapp-update
 ```
 
 React Native should automatically link the library.
@@ -37,7 +37,7 @@ Check that your app has an update. You can use whatever you want to send the req
 ```js
 import React, { useCallback, useState } from 'react';
 
-import { AppUpdate } from 'react-native-in-app-update';
+import { AppUpdate } from 'react-native-inapp-update';
 
 const [updateData, setUpdateData] = useState<{
     url: string;
@@ -54,7 +54,7 @@ const checkUpdate = useCallback(async () => {
     }
 
     const result = await fetch(
-        'https://raw.githubusercontent.com/NepeinAV/react-native-in-app-update/master/example/app-updates/update.json',
+        'https://raw.githubusercontent.com/NepeinAV/react-native-inapp-update/master/example/app-updates/update.json',
     );
     const data = await result.json();
     const currentVersionCode = await AppUpdate.getVersionCode();
@@ -84,7 +84,7 @@ But how do you now when the file has been downloaded? The library API has event 
 ```
 import React, { useCallback, useState } from 'react';
 
-import { AppUpdate } from 'react-native-in-app-update';
+import { AppUpdate } from 'react-native-inapp-update';
 
 <...>
 
