@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="android_auto_update_dialog_title">Есть обновление!</string>
+
+    <string name="android_auto_update_notify_ticker">Откройте для себя новую версию, нажмите, чтобы обновить</string>
+    <string name="android_auto_update_notify_content">Откройте для себя новую версию, нажмите, чтобы обновить</string>
+
+    <string name="android_auto_update_dialog_btn_download">Загрузить</string>
+    <string name="android_auto_update_dialog_btn_cancel">Не сейчас</string>
+
+    <string name="android_auto_update_toast_no_new_update">Нет обновлений</string>
+
+    <string name="android_auto_update_download_progress">Загружено:%1$d%%</string>
+    <string name="android_auto_update_downloading">Загрузка обновления СберАвто</string>
+
+    <string name="android_auto_update_dialog_checking">Проверка...</string>
+
+
+</resources>
