@@ -38,12 +38,10 @@ const App = () => {
         const data = await result.json();
         const currentVersionCode = await AppUpdate.getVersionCode();
 
-        setTimeout(() => {
-            setUpdateData(data);
-        }, 300);
-
         if (data.versionCode <= currentVersionCode) {
             Alert.alert('Update was not found');
+        } else {
+            setUpdateData(data);
         }
 
         return;
