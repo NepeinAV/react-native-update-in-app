@@ -8,15 +8,10 @@
   "react-native": "src/index",
   "source": "src/index",
   "files": [
-    "src",
     "lib",
     "android",
-    "ios",
-    "cpp",
-    "react-native-in-app-update.podspec",
     "!lib/typescript/example",
     "!android/build",
-    "!ios/build",
     "!**/__tests__",
     "!**/__fixtures__",
     "!**/__mocks__"
@@ -27,9 +22,7 @@
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
     "prepare": "bob build",
     "release": "release-it",
-    "example": "yarn --cwd example",
-    "pods": "cd example && pod-install --quiet",
-    "bootstrap": "yarn example && yarn && yarn pods"
+    "example": "yarn --cwd example"
   },
   "keywords": [
     "react-native",

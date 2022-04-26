@@ -1,11 +1,11 @@
-package com.reactnativeinappupdate.reactnative.broadcast;
+package com.reactnativeinappupdate.broadcast;
 
 import android.content.Intent;
 
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.WritableMap;
 
-import com.reactnativeinappupdate.reactnative.AppUpdateModule;
+import com.reactnativeinappupdate.AppUpdateModule;
 
 public class DownloadStartIntentHandler {
     public Intent create() {

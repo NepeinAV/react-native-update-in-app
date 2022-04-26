@@ -1,6 +1,4 @@
-package com.reactnativeinappupdate.reactnative;
-
-import androidx.annotation.NonNull;
+package com.reactnativeinappupdate;
 
 import com.facebook.react.ReactPackage;
 import com.facebook.react.bridge.JavaScriptModule;
@@ -14,7 +12,6 @@ import java.util.Collections;
 
 
 public class AppUpdatePackage implements ReactPackage {
-    @NonNull
     @Override
     public List<NativeModule> createNativeModules(ReactApplicationContext reactContext) {
         List<NativeModule> modules = new ArrayList<>();

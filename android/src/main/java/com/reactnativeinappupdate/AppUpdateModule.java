@@ -1,4 +1,4 @@
-package com.reactnativeinappupdate.reactnative;
+package com.reactnativeinappupdate;
 
 import android.content.Context;
 import android.content.BroadcastReceiver;
@@ -17,10 +17,10 @@ import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.modules.core.DeviceEventManagerModule;
 
-import com.reactnativeinappupdate.reactnative.broadcast.DownloadEndIntentHandler;
-import com.reactnativeinappupdate.reactnative.broadcast.DownloadErrorIntentHandler;
-import com.reactnativeinappupdate.reactnative.broadcast.DownloadProgressIntentHandler;
-import com.reactnativeinappupdate.reactnative.broadcast.DownloadStartIntentHandler;
+import com.reactnativeinappupdate.broadcast.DownloadEndIntentHandler;
+import com.reactnativeinappupdate.broadcast.DownloadErrorIntentHandler;
+import com.reactnativeinappupdate.broadcast.DownloadProgressIntentHandler;
+import com.reactnativeinappupdate.broadcast.DownloadStartIntentHandler;
 import com.reactnativeinappupdate.update.ApkUtils;
 import com.reactnativeinappupdate.update.AppUtils;
 import com.reactnativeinappupdate.update.StorageUtils;

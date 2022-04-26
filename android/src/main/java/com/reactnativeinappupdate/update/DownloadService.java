@@ -5,10 +5,10 @@ import android.content.Intent;
 import android.content.Context;
 
 import com.reactnativeinappupdate.Constants;
-import com.reactnativeinappupdate.reactnative.broadcast.DownloadEndIntentHandler;
-import com.reactnativeinappupdate.reactnative.broadcast.DownloadErrorIntentHandler;
-import com.reactnativeinappupdate.reactnative.broadcast.DownloadProgressIntentHandler;
-import com.reactnativeinappupdate.reactnative.broadcast.DownloadStartIntentHandler;
+import com.reactnativeinappupdate.broadcast.DownloadEndIntentHandler;
+import com.reactnativeinappupdate.broadcast.DownloadErrorIntentHandler;
+import com.reactnativeinappupdate.broadcast.DownloadProgressIntentHandler;
+import com.reactnativeinappupdate.broadcast.DownloadStartIntentHandler;
 
 import java.io.File;
 import java.io.FileOutputStream;
