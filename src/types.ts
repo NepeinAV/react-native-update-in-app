@@ -1,19 +1,26 @@
+enum DownloadStatus {
+    Start = 'start',
+    Downloading = 'downloading',
+    End = 'end',
+    Error = 'error',
+}
+
 type OnDownloadProgressEvent =
     | {
-          status: 'start';
+          status: DownloadStatus.Start;
           progress: number;
       }
     | {
-          status: 'downloading';
+          status: DownloadStatus.Downloading;
           progress: number;
       }
     | {
-          status: 'end';
+          status: DownloadStatus.End;
           apkFileName: string;
       }
     | {
-          status: 'error';
+          status: DownloadStatus.Error;
           errorMessage: string;
       };
 
-export { OnDownloadProgressEvent };
+export { OnDownloadProgressEvent, DownloadStatus };
