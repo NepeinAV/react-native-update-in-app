@@ -16,10 +16,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.SocketException;
 
 public class DownloadService extends IntentService {
     private static final int BUFFER_SIZE = 10 * 1024;
     private Context mContext;
+
+    private boolean isFirstConnection = true;
 
     public DownloadService() {
         super("DownloadService");
@@ -28,6 +31,7 @@ public class DownloadService extends IntentService {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         mContext = getApplicationContext();
+        isFirstConnection = true;
 
         return super.onStartCommand(intent, flags, startId);
     }
@@ -35,6 +39,20 @@ public class DownloadService extends IntentService {
     @Override
     protected void onHandleIntent(Intent intent) {
         String urlStr = intent.getStringExtra(Constants.APK_DOWNLOAD_URL);
+
+        InputStream in = null;
+        FileOutputStream out = null;
+
+        try {
+            while (downloadFile(urlStr, !isFirstConnection) == false) {
+                isFirstConnection = false;
+            }
+        } catch (Exception e) {
+            mContext.sendBroadcast(new DownloadErrorIntentHandler().create(e));
+        }
+    }
+
+    private boolean downloadFile(String urlStr, boolean resumeDownload) throws Exception {
         InputStream in = null;
         FileOutputStream out = null;
 
@@ -50,9 +68,6 @@ public class DownloadService extends IntentService {
             urlConnection.setRequestProperty("Charset", "UTF-8");
             urlConnection.setRequestProperty("Accept-Encoding", "gzip, deflate");
 
-            urlConnection.connect();
-
-            long bytetotal = urlConnection.getContentLength();
             long bytesum = 0;
             int byteread = 0;
 
@@ -60,30 +75,56 @@ public class DownloadService extends IntentService {
             String apkName = urlStr.substring(urlStr.lastIndexOf("/") + 1, urlStr.length());
             File apkFile = new File(dir, apkName);
 
-            in = urlConnection.getInputStream();
-            out = new FileOutputStream(apkFile);
-            byte[] buffer = new byte[BUFFER_SIZE];
+            if (apkFile.exists() && resumeDownload) {
+                long donwloadedBytesLength = apkFile.length();
+                bytesum = donwloadedBytesLength;
 
-            int oldProgress = 0;
+                urlConnection.setRequestProperty("Range", "bytes=" + donwloadedBytesLength + "-");
 
-            mContext.sendBroadcast(new DownloadStartIntentHandler().create());
+                out = new FileOutputStream(apkFile, true);
+            } else {
+                out = new FileOutputStream(apkFile);
+            }
 
-            while ((byteread = in.read(buffer)) != -1) {
-                bytesum += byteread;
-                out.write(buffer, 0, byteread);
+            urlConnection.connect();
 
-                int progress = (int) (bytesum * 100L / bytetotal);
+            long bytetotal = urlConnection.getContentLength() + bytesum;
+            int status = urlConnection.getResponseCode();
 
-                if (progress != oldProgress) {
-                    mContext.sendBroadcast(new DownloadProgressIntentHandler().create(progress));
+            int oldProgress = (int) (bytesum * 100L / bytetotal);
+
+            if (status != HttpStatusCodeConstants.REQUESTED_RANGE_NOT_SATISFIABLE) {
+                in = urlConnection.getInputStream();
+                byte[] buffer = new byte[BUFFER_SIZE];
+
+                mContext.sendBroadcast(new DownloadStartIntentHandler().create(oldProgress));
+
+                while ((byteread = in.read(buffer)) != -1) {
+                    bytesum += byteread;
+                    out.write(buffer, 0, byteread);
+
+                    int progress = (int) (bytesum * 100L / bytetotal);
+
+                    if (progress != oldProgress) {
+                        mContext.sendBroadcast(new DownloadProgressIntentHandler().create(progress));
+                    }
+
+                    oldProgress = progress;
                 }
 
-                oldProgress = progress;
             }
 
             mContext.sendBroadcast(new DownloadEndIntentHandler().create(apkName));
+
+            return true;
+        } catch (SocketException e) {
+            if (e.getMessage() == "Connection reset") {
+                return false;
+            }
+
+            throw new Exception(e.getMessage());
         } catch (Exception e) {
-            mContext.sendBroadcast(new DownloadErrorIntentHandler().create(e));
+            throw e;
         } finally {
             if (out != null) {
                 try {
