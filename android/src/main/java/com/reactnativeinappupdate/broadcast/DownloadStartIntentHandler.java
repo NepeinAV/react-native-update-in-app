@@ -13,7 +13,7 @@ public class DownloadStartIntentHandler {
 
         downloadStartIntent.putExtra("eventName", "downloadStart");
         downloadStartIntent.putExtra("status", "start");
-        downloadStartIntent.putExtra("status", progress);
+        downloadStartIntent.putExtra("progress", progress);
 
         return downloadStartIntent;
     }
