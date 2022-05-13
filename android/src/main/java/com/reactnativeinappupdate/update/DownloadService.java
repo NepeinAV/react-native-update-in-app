@@ -117,13 +117,11 @@ public class DownloadService extends IntentService {
             mContext.sendBroadcast(new DownloadEndIntentHandler().create(apkName));
 
             return true;
-        } catch (SocketException e) {
-            if (e.getMessage() == "Connection reset") {
+        } catch (Exception e) {
+            if (e.getMessage().toLowerCase().contains("connection reset")) {
                 return false;
             }
-
-            throw new Exception(e.getMessage());
-        } catch (Exception e) {
+          
             throw e;
         } finally {
             if (out != null) {
