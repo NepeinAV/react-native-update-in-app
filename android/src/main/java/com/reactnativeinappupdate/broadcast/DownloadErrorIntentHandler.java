@@ -4,11 +4,12 @@ import android.content.Intent;
 
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.WritableMap;
-import com.reactnativeinappupdate.AppUpdateModule;
+
+import com.reactnativeinappupdate.Constants;
 
 public class DownloadErrorIntentHandler {
     public Intent create(Exception e) {
-        Intent downloadErrorIntent = new Intent(AppUpdateModule.BROADCAST_ACTION);
+        Intent downloadErrorIntent = new Intent(Constants.BROADCAST_ACTION);
 
         downloadErrorIntent.putExtra("eventName", "downloadError");
         downloadErrorIntent.putExtra("status", "error");
