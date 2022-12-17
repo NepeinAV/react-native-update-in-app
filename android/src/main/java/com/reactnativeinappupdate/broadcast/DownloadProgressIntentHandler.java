@@ -4,11 +4,12 @@ import android.content.Intent;
 
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.WritableMap;
-import com.reactnativeinappupdate.AppUpdateModule;
+
+import com.reactnativeinappupdate.Constants;
 
 public class DownloadProgressIntentHandler {
     public Intent create(int progress) {
-        Intent downloadProgressIntent = new Intent(AppUpdateModule.BROADCAST_ACTION);
+        Intent downloadProgressIntent = new Intent(Constants.BROADCAST_ACTION);
 
         downloadProgressIntent.putExtra("eventName", "downloadProgress");
         downloadProgressIntent.putExtra("status", "downloading");
