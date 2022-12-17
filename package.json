@@ -12,6 +12,9 @@
     "codegen",
     "!lib/typescript/example",
     "!android/build",
+    "!android/.gradle",
+    "!android/.idea",
+    "!android/local.properties",
     "!**/__tests__",
     "!**/__fixtures__",
     "!**/__mocks__"
