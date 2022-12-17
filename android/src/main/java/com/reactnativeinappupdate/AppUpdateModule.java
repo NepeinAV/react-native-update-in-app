@@ -1,5 +1,7 @@
 package com.reactnativeinappupdate;
 
+import static com.reactnativeinappupdate.Constants.BROADCAST_ACTION;
+
 import android.content.Context;
 import android.content.BroadcastReceiver;
 import android.content.Intent;
@@ -26,12 +28,12 @@ import com.reactnativeinappupdate.update.AppUtils;
 import com.reactnativeinappupdate.update.StorageUtils;
 import com.reactnativeinappupdate.update.DownloadUtils;
 
-public class AppUpdateModule extends ReactContextBaseJavaModule  {
+public class AppUpdateModule extends AppUpdateSpec {
     private final ReactApplicationContext reactContext;
     private BroadcastReceiver broadcastReceiver;
     private Activity activity;
 
-    public final static String BROADCAST_ACTION = "AppUpdateAction";
+    public static final String NAME = "AppUpdate";
 
     public AppUpdateModule(ReactApplicationContext reactContext) {
         super(reactContext);
@@ -41,7 +43,7 @@ public class AppUpdateModule extends ReactContextBaseJavaModule  {
 
     @Override
     public String getName() {
-        return "AppUpdate";
+        return NAME;
     }
 
     @ReactMethod
@@ -145,5 +147,5 @@ public class AppUpdateModule extends ReactContextBaseJavaModule  {
     public void addListener(String eventName) {}
 
     @ReactMethod
-    public void removeListeners(Integer count) {}
+    public void removeListeners(double count) {}
 }

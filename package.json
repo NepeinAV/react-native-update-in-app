@@ -9,6 +9,7 @@
   "files": [
     "lib",
     "android",
+    "codegen",
     "!lib/typescript/example",
     "!android/build",
     "!**/__tests__",
@@ -136,5 +137,13 @@
         }
       ]
     ]
+  },
+  "codegenConfig": {
+    "name": "AppUpdateSpec",
+    "type": "modules",
+    "jsSrcsDir": "./src/codegen",
+    "android": {
+      "javaPackageName": "com.reactnativeinappupdate"
+    }
   }
 }

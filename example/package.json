@@ -4,13 +4,14 @@
     "version": "0.0.1",
     "private": true,
     "scripts": {
-        "android": "react-native run-android",
+        "android": "react-native run-android --active-arch-only",
         "ios": "react-native run-ios",
-        "start": "react-native start"
+        "start": "react-native start --reset-cache"
     },
     "dependencies": {
         "react": "18.1.0",
-        "react-native": "0.70.6"
+        "react-native": "0.70.6",
+        "react-native-update-in-app": "../"
     },
     "devDependencies": {
         "@babel/core": "7.12.9",
