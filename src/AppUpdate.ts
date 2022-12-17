@@ -25,7 +25,7 @@ const AppUpdate = {
         return AppUpdateModule.getVersionCode();
     },
     downloadApp(apkUrl: string) {
-        AppUpdateModule.updateApp(apkUrl);
+        AppUpdateModule.downloadApp(apkUrl);
     },
     installApp(apkFileName: string): Promise<null> {
         return AppUpdateModule.installApp(apkFileName);

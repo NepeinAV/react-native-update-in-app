@@ -47,8 +47,8 @@ public class AppUpdateModule extends AppUpdateSpec {
     }
 
     @ReactMethod
-    public void updateApp(String apkUrl) {
-        DownloadUtils.updateApp(activity, apkUrl);
+    public void downloadApp(String apkUrl) {
+        DownloadUtils.downloadApp(activity, apkUrl);
     }
 
     @ReactMethod

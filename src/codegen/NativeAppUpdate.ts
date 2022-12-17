@@ -3,7 +3,7 @@ import { TurboModuleRegistry } from 'react-native';
 
 export interface Spec extends TurboModule {
     getVersionCode(): Promise<number>;
-    updateApp(apkUrl: string): void;
+    downloadApp(apkUrl: string): void;
     installApp(apkFileName: string): Promise<null>;
 
     addListener(eventName: string): void;

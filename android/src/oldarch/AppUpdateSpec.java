@@ -9,7 +9,7 @@ abstract class AppUpdateSpec extends ReactContextBaseJavaModule {
         super(context);
     }
 
-    public abstract void updateApp(String apkUrl);
+    public abstract void downloadApp(String apkUrl);
 
     public abstract void getVersionCode(Promise promise);
 
