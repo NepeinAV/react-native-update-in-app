@@ -18,9 +18,9 @@ yarn example android
 
 ## Installation
 
-Version `1.x.x` supports React Native 0.65+ (old architecture) and TurboModules (new architecture) with React Native 0.70+.
+⚠️ Version `1.x.x` supports React Native 0.65+ (old architecture) and TurboModules (new architecture) with React Native 0.70+.
 
-To make it work with previous React Native versions (0.63 - 0.64) you should install `0.4.3` version of library.
+⚠️ To make it work with previous React Native versions (0.63 - 0.64) you should install `0.4.3` version of library.
 
 ```sh
 yarn add react-native-update-in-app
