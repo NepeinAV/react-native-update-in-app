@@ -1,6 +1,6 @@
 {
   "name": "react-native-update-in-app",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Install updates directly from your app",
   "main": "lib/commonjs/index.js",
   "module": "lib/module/index.js",
