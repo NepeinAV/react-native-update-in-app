@@ -1,20 +1,14 @@
-import { NativeEventEmitter, NativeModules } from 'react-native';
+import { NativeEventEmitter } from 'react-native';
 
-import type { Spec } from 'src/codegen/NativeAppUpdate';
+import AppUpdateNativeModule from './AppUpdateNativeModule';
 
 import type { OnDownloadProgressEvent } from './types';
 
-const isTurboModuleEnabled = global.__turboModuleProxy != null;
-
-const AppUpdateModule: Spec = isTurboModuleEnabled
-    ? require('./codegen/NativeAppUpdate').default
-    : NativeModules.AppUpdate;
+let appUpdateEventEmitter: NativeEventEmitter;
 
 const AppUpdate = {
     onDownloadProgress(callback: (event: OnDownloadProgressEvent) => void) {
-        const eventEmitter = new NativeEventEmitter(AppUpdateModule);
-
-        const onDownloadProgressListener = eventEmitter.addListener(
+        const onDownloadProgressListener = AppUpdate.eventEmitter.addListener(
             'onDownloadProgress',
             callback,
         );
@@ -22,13 +16,23 @@ const AppUpdate = {
         return onDownloadProgressListener.remove;
     },
     getVersionCode(): Promise<number> {
-        return AppUpdateModule.getVersionCode();
+        return AppUpdateNativeModule.getVersionCode();
     },
     downloadApp(apkUrl: string) {
-        AppUpdateModule.downloadApp(apkUrl);
+        AppUpdateNativeModule.downloadApp(apkUrl);
     },
     installApp(apkFileName: string): Promise<null> {
-        return AppUpdateModule.installApp(apkFileName);
+        return AppUpdateNativeModule.installApp(apkFileName);
+    },
+
+    get eventEmitter() {
+        if (!appUpdateEventEmitter) {
+            appUpdateEventEmitter = new NativeEventEmitter(
+                AppUpdateNativeModule,
+            );
+        }
+
+        return appUpdateEventEmitter;
     },
 };
 
