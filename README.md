@@ -75,7 +75,7 @@ const checkUpdate = useCallback(async () => {
 
 ### Step 2
 
-If your decide that your app needs update, then request library to download APK file like that:
+If you decide that your app needs update, then request library to download APK file like that:
 
 ```
 AppUpdate.downloadApp(updateData.url);
