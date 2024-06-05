@@ -1,20 +1,22 @@
 package com.reactnativeinappupdate;
 
+import static android.content.Context.RECEIVER_NOT_EXPORTED;
 import static com.reactnativeinappupdate.Constants.BROADCAST_ACTION;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.BroadcastReceiver;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.app.Activity;
 import android.content.pm.PackageManager;
+import android.os.Build;
 
 import java.io.File;
 import java.io.IOException;
 
 import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactMethod;
-import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.modules.core.DeviceEventManagerModule;
@@ -75,6 +77,7 @@ public class AppUpdateModule extends AppUpdateSpec {
         }
     }
 
+    @SuppressLint("UnspecifiedRegisterReceiverFlag")
     @Override
     public void initialize() {
         super.initialize();
@@ -130,7 +133,11 @@ public class AppUpdateModule extends AppUpdateSpec {
 
         IntentFilter intentFilter = new IntentFilter(BROADCAST_ACTION);
 
-        reactContext.registerReceiver(broadcastReceiver, intentFilter);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            reactContext.registerReceiver(broadcastReceiver, intentFilter, RECEIVER_NOT_EXPORTED);
+        } else {
+            reactContext.registerReceiver(broadcastReceiver, intentFilter);
+        }
     }
 
     public void invalidate() {
