@@ -1,3 +1,8 @@
-import AppUpdateNativeModuleMock from '../jest/mocks/AppUpdateNativeModuleMock';
+export default {
+    getVersionCode: jest.fn(() => 111),
+    downloadApp: jest.fn(),
+    installApp: jest.fn(),
 
-export default AppUpdateNativeModuleMock;
+    addListener: jest.fn(),
+    removeListeners: jest.fn(),
+};

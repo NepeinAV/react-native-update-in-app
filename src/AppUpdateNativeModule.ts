@@ -1,10 +1,12 @@
-import { NativeModules } from 'react-native';
+import { NativeModules, Platform, TurboModuleRegistry } from 'react-native';
 import type { Spec } from '../codegen/NativeAppUpdate';
 
 const isTurboModuleEnabled = global.__turboModuleProxy != null;
 
 const AppUpdateNativeModule: Spec = isTurboModuleEnabled
-    ? require('../codegen/NativeAppUpdate').default
+    ? Platform.OS === 'android'
+        ? TurboModuleRegistry.getEnforcing<Spec>('AppUpdate')
+        : null
     : NativeModules.AppUpdate;
 
 export default AppUpdateNativeModule;
